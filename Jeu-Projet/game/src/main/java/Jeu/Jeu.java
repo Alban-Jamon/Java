@@ -2,6 +2,7 @@ package Jeu;
 
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Scanner;
 
@@ -25,6 +26,7 @@ public class Jeu {
 		System.out.println("Welcome young Developer!"+ carriageReturn + "This game will be a true bloodshed for your champions" + carriageReturn+
 				"And for your developer eyes!" + carriageReturn + "..."+carriageReturn);
 		createChamps();
+		battle();
 		
 	}
 	
@@ -95,7 +97,7 @@ public class Jeu {
 				break;
 				
 			default:
-				System.out.println("Be focus Timoty!"+carriageReturn+
+				System.out.println("Be focus Bob!"+carriageReturn+
 						"Please choose a number for summon the corresponding champion!"+carriageReturn+
 						"like 1 for summon this beautifull Knight ;* ");
 				continue;
@@ -113,17 +115,95 @@ public class Jeu {
 	// Second Step : FIGHHHHTTT
 	
 	/* 
-	 * Fonction fight
-	 * while nb pers> 1
-	 * 
-	 * Foreach personnage 
-	 * Alors on demande ce qu'on veut faire 
-	 * On fight 
-	 * et si personnage die alors on depush de la list 
-	 * 
+	 * on retourne le perso 
+	 * on attaque le perso  ------------ON EST ICI  ---------------------
 	 */
-	
+	public void battle()
+	{
+		String carriageReturn = System.getProperty("line.separator");
+		Scanner scSkill = new Scanner(System.in);
+		
+		while(champions.size()>1)
+		{
+			for(Champion currentChamp : champions)
+			{
+				System.out.println("The "+currentChamp.getClass().getSimpleName()+ " with id: " +
+						currentChamp.getId() + " has "+ currentChamp.getHp()+ " HP and do "+
+						currentChamp.getDamage()+ "Dommage points");
+				System.out.println("What do you want to do BOB with this "+ currentChamp.getClass().getSimpleName()+" ?   0_0 "+carriageReturn+
+						"1 - Attack" + carriageReturn+
+						"2 - Protect your backside");
+				
+				//-----------------------Problème iiiiccccccciiiii--------------------
+				
+				int skill= scSkill.nextInt();
+				switch (skill) {
+				case 1:
+					Champion target = chooseEnemy(currentChamp);
+					currentChamp.attack(target);
+					
+					break;
+					
+				case 2:
+					currentChamp.setProtect(true);
+					System.out.println("the "+getClass().getSimpleName()+ " protect carefully his precious! ");
+					break;
 
+					
+				default:
+					System.out.println("Did you found some liquor on the road, son ? "+carriageReturn+
+							"Please be nice in front of your computer !"+carriageReturn+
+							"Your computer and me , will be so proud if you could choose one number in this set of numbers"+carriageReturn+
+							"Good Boy / girl / (put your gender here) !");
+					break;
+				}
+			}
+		}
+		scSkill.close();
+	}
+	
+	//display Enemies and return 1 to attack
+	
+	public void displayEnemies(Champion attacking)
+	{
+		for(Champion current: this.champions)
+		{
+			if(!current.equals(attacking))
+			{
+			System.out.println(current.getId() +" - "+current.getClass().getSimpleName()+
+					 " has "+ current.getHp()+ " HP and do "+
+					current.getDamage()+ "Dommage points");
+			}
+			
+		}
+		
+	}
+
+	public Champion chooseEnemy(Champion attacking )
+	{
+		Scanner sc = new Scanner(System.in);
+		List<Integer> enemyId = new ArrayList<Integer>();
+		
+		while(true)
+		{
+			displayEnemies(attacking);
+			
+			System.out.println("Please choose one to smash his as... asymmetrical face ! Not sure about this one... 0_0 ");
+			int enemy=sc.nextInt();
+			
+			// si le joueur existe et que c'est pas toi
+			
+			for (Champion current : champions) {
+				if(current.getId()==enemy)
+				{
+					sc.close();
+					return current;
+				}
+			}
+			System.out.println("Listen sponge Bob ! If you don't wanna have square pant CHOOSE SOMEONE with his number!");
+			System.out.println("Or I'll put your own Weapon into your ...you know ... asymmetrical face! ");
+		}			
+	}
 	
 	
 	

@@ -36,6 +36,9 @@ public abstract class Champion implements InterfaceChampion {
 			target.setHp(target.getHp()-this.damage);		
 	}
 	
+	
+
+	
 	//ToString
 	
 	@Override
@@ -50,14 +53,11 @@ public abstract class Champion implements InterfaceChampion {
 		return count;
 	}
 
-	
-
-
-	protected int getId() {
+	public int getId() {
 		return id;
 	}
 
-	protected int getHp() {
+	public int getHp() {
 		return hp;
 	}
 
@@ -67,17 +67,17 @@ public abstract class Champion implements InterfaceChampion {
 	}
 
 
-	protected int getDamage() {
+	public int getDamage() {
 		return damage;
 	}
 
 
-	protected boolean isProtect() {
+	public boolean isProtect() {
 		return protect;
 	}
 
 
-	protected void setProtect(boolean protect) {
+	public void setProtect(boolean protect) {
 		this.protect = protect;
 	}
 

@@ -1,5 +1,0 @@
-package champions;
-
-public abstract class Champion {
-
-}
