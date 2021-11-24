@@ -1,0 +1,7 @@
+package champions;
+
+public enum KindChampions{
+	Knight,
+	Archer,
+	Wizard,
+}

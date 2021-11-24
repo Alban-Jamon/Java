@@ -1,0 +1,18 @@
+package champions;
+
+public class EnumChampionn {
+	
+	private enum KindChampion{
+		Knight{
+			public String toString() {
+				return "Knight";
+			}
+		},
+		Archer{
+			public String toString() {
+				return "Archer";
+			}
+		},
+	}
+
+}

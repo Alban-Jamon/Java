@@ -36,11 +36,22 @@ public abstract class Champion implements InterfaceChampion {
 			target.setHp(target.getHp()-this.damage);		
 	}
 	
+	//ToString
+	
+	@Override
+	public String toString() {
+		String carriageReturn = System.getProperty("line.separator");
+		return carriageReturn+this.getClass().getSimpleName()+" id=" + id + ", hp=" + hp + ", damage=" + damage + ", protect=" + protect  ;
+	}
+	
 	
 	//Getter ---- Setter
-	protected static int getCount() {
+	public static int getCount() {
 		return count;
 	}
+
+	
+
 
 	protected int getId() {
 		return id;
