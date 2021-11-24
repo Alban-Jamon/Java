@@ -1,0 +1,16 @@
+package Jeu;
+
+public class Jeu {
+	
+	public void launch() {
+		String carriageReturn = System.getProperty("line.separator");
+		System.out.println("Welcome young Developer"+ );
+		
+	}
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+	}
+
+}

@@ -1,0 +1,75 @@
+package champions;
+
+public abstract class Champion implements InterfaceChampion {
+	
+	private static int count=0;
+	private int id, hp, damage;
+	private boolean protect;
+	
+	
+	// Constructor
+	public Champion(int hp, int damage) {
+		Champion.count++;
+		this.id=Champion.count;
+		this.hp = hp;
+		this.damage = damage;
+		this.protect = false;
+	}
+	
+	/* 3 fonctions  à définir ici */
+	
+	public void protect(){
+		this.setProtect(true);		
+	}
+	
+	public void attack() {
+		
+	}
+	
+	public void beDamaged() {
+		
+	}
+
+	
+	//Getter ---- Setter
+	protected static int getCount() {
+		return count;
+	}
+
+
+	protected static void setCount(int count) {
+		Champion.count = count;
+	}
+
+
+	protected int getId() {
+		return id;
+	}
+
+	protected int getHp() {
+		return hp;
+	}
+
+
+	protected void setHp(int hp) {
+		this.hp = hp;
+	}
+
+
+	protected int getDamage() {
+		return damage;
+	}
+
+
+	protected boolean isProtect() {
+		return protect;
+	}
+
+
+	protected void setProtect(boolean protect) {
+		this.protect = protect;
+	}
+
+	
+
+}

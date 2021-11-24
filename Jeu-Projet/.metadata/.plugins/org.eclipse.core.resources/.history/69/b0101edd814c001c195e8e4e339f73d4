@@ -1,0 +1,8 @@
+package champions;
+
+protected abstract class Champion {
+	private bool isProtect = false;
+	
+	
+
+}

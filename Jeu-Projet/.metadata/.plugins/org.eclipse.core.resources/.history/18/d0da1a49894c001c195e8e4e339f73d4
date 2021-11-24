@@ -1,0 +1,8 @@
+package champions;
+
+public class Snippet {
+	public static void main(String[] args) {
+		super.attack(target);	
+	}
+}
+

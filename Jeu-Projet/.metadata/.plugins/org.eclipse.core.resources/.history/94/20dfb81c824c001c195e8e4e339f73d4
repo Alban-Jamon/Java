@@ -1,0 +1,10 @@
+package champions;
+
+protected abstract class Champion {
+	
+	private boolean isProtect = false;
+	
+	
+	
+
+}

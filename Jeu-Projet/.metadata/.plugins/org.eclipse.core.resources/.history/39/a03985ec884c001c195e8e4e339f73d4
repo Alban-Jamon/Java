@@ -1,0 +1,12 @@
+package champions;
+
+public interface InterfaceChampion {
+	
+	protected void protect();
+	
+	protected void attack(Champion target);
+	
+	
+	
+
+}

@@ -1,0 +1,16 @@
+package champions;
+
+public class Knight extends Champion{
+	
+
+	public Knight() {
+		super(20, 5);
+		// TODO Auto-generated constructor stub
+	}
+
+	public void attack() {
+		super().attack();		
+	}
+	
+
+}
