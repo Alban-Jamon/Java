@@ -1,6 +1,7 @@
 package champions;
 
 public class Wizard extends Champion{
+	private int healPoint=5;
 	
 
 	public Wizard() {
@@ -9,7 +10,12 @@ public class Wizard extends Champion{
 
 	public void attack(Champion target) {
 		super.attack(target);
-		super.attack(target);	
+	}
+	
+	public void heal()
+	{
+		this.setHp(this.getHp()+healPoint);
+		System.out.println("Wizzard did a spell, and his life increase of "+ healPoint+ "Hp!");
 	}
 	
 

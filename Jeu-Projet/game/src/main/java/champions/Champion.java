@@ -24,18 +24,40 @@ public abstract class Champion implements InterfaceChampion {
 	}
 	
 	public void attack(Champion target) {
+		int damage=this.damage;
 		if( target.isProtect())
 		{
-			if (target.getClass().getSimpleName()=="Knight")
+			if (target.getClass().getSimpleName().equals("Knight"))
 			{
-				//ça fait rien et on sors avec un return; 
+				System.out.println("The "+target.getClass().getSimpleName()+ " with id "+ target.getId()+" use protection and he took no dommage");
+				return;
+			}
+			else {
+				damage/=2;
 			}
 			
 		}
-		if ((target.getHp()-this.damage) < 0)
-			target.setHp(target.getHp()-this.damage);		
+		
+		target.setHp(target.getHp()-damage);
+		
+		if (target.getHp() > 0)
+		{
+			System.out.println(target.getClass().getSimpleName()+" with id "+target.getId()+ " receive "+damage+ "damage");
+		}
+			
+		else {
+			System.out.println(target.getClass().getSimpleName()+" with id "+ target.getId()+ "has been slain !");
+			System.out.println("After took "+ damage + "damage points, he has gone to the Valhalla! ");
+			System.out.println("RIP");
+			
+		}
+		
+		
 	}
 	
+	public void heal() {
+		
+	}
 	
 
 	
@@ -62,7 +84,7 @@ public abstract class Champion implements InterfaceChampion {
 	}
 
 
-	protected void setHp(int hp) {
+	public void setHp(int hp) {
 		this.hp = hp;
 	}
 

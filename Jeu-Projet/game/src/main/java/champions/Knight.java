@@ -8,7 +8,7 @@ public class Knight extends Champion{
 	}
 
 	public void attack(Champion target) {
-		super.attack(target);			
+		super.attack(target);
 	}
 	
 

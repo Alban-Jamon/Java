@@ -2,6 +2,7 @@ package Jeu;
 
 
 import java.util.ArrayList;
+import java.util.Currency;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Scanner;
@@ -16,6 +17,7 @@ import champions.Wizard;
 
 public class Jeu {
 	
+	static Scanner sc = new Scanner(System.in);
 	private List<Champion> champions= new ArrayList<Champion>();
 	
 	
@@ -35,8 +37,6 @@ public class Jeu {
 	
 	private void createChamps() {
 		String carriageReturn = System.getProperty("line.separator");
-		Scanner sc = new Scanner(System.in);
-		
 		
 		
 		System.out.println("So young fool ...  Do you want Summon some Champion for a Brawl ? (Y/N) ");
@@ -59,8 +59,7 @@ public class Jeu {
 			System.out.println("Did you come back to the Tavern , son ?"+carriageReturn+
 					"Maybe you should stop to drink and choose one of this two choices ! ");
 		}
-		
-		sc.close();
+	
 		System.out.println("Well done Son!"+carriageReturn+"You summon "+Champion.getCount()+ " Champion(s)");
 		System.out.println(champions);
 		
@@ -72,7 +71,7 @@ public class Jeu {
 		String carriageReturn = System.getProperty("line.separator");
 		char test = 'Y';
 		Champion tempChamp;
-		Scanner scChamp = new Scanner(System.in);
+
 		
 		while(test=='Y')
 		{
@@ -82,7 +81,7 @@ public class Jeu {
 					"2 - Archer"+carriageReturn+
 					"3 - Wizard"+carriageReturn+
 					"Choose your number ");
-			int valueChamp = scChamp.nextInt();
+			int valueChamp = sc.nextInt();
 			switch(valueChamp) {
 			case 1:
 				tempChamp= new Knight();
@@ -106,9 +105,8 @@ public class Jeu {
 			champions.add(tempChamp);
 			
 			System.out.println("Hey Psssssst you !     0_0"+carriageReturn+" Do you want summon one other Champ? (Y/N) ");
-			test = scChamp.next().charAt(0);		
+			test = sc.next().charAt(0);		
 		}
-		scChamp.close();
 	}
 	
 	
@@ -120,34 +118,49 @@ public class Jeu {
 	 */
 	public void battle()
 	{
+	
 		String carriageReturn = System.getProperty("line.separator");
-		Scanner scSkill = new Scanner(System.in);
 		
 		while(champions.size()>1)
 		{
 			for(Champion currentChamp : champions)
 			{
+				currentChamp.setProtect(false);
 				System.out.println("The "+currentChamp.getClass().getSimpleName()+ " with id: " +
 						currentChamp.getId() + " has "+ currentChamp.getHp()+ " HP and do "+
 						currentChamp.getDamage()+ "Dommage points");
 				System.out.println("What do you want to do BOB with this "+ currentChamp.getClass().getSimpleName()+" ?   0_0 "+carriageReturn+
 						"1 - Attack" + carriageReturn+
 						"2 - Protect your backside");
+				if(currentChamp.getClass().getSimpleName().equals("Wizard"))
+				{
+					System.out.println("3 - Heal");
+				}
 				
-				//-----------------------Problème iiiiccccccciiiii--------------------
-				
-				int skill= scSkill.nextInt();
+				int skill= sc.nextInt();
+				System.out.println(skill);
 				switch (skill) {
 				case 1:
 					Champion target = chooseEnemy(currentChamp);
 					currentChamp.attack(target);
+					if(target.getHp()<=0)
+					{
+						champions.remove(target);
+					}
 					
 					break;
 					
 				case 2:
 					currentChamp.setProtect(true);
-					System.out.println("the "+getClass().getSimpleName()+ " protect carefully his precious! ");
+					System.out.println("the "+currentChamp.getClass().getSimpleName()+ " protect carefully his precious! ");
 					break;
+					
+				case 3:
+					if(currentChamp.getClass().getSimpleName().equals("Wizard"))
+					{
+						currentChamp.heal();
+						break;
+					}
 
 					
 				default:
@@ -159,7 +172,8 @@ public class Jeu {
 				}
 			}
 		}
-		scSkill.close();
+		System.out.println(champions.get(0).getClass().getSimpleName()+ " with id "+ champions.get(0).getId()+ " win the batttle");
+		System.out.println("Happy End");
 	}
 	
 	//display Enemies and return 1 to attack
@@ -181,22 +195,16 @@ public class Jeu {
 
 	public Champion chooseEnemy(Champion attacking )
 	{
-		Scanner sc = new Scanner(System.in);
-		List<Integer> enemyId = new ArrayList<Integer>();
 		
 		while(true)
 		{
+			System.out.println("Please choose one to smash his as... asymmetrical face ! Not sure about this one... 0_0 ");
 			displayEnemies(attacking);
 			
-			System.out.println("Please choose one to smash his as... asymmetrical face ! Not sure about this one... 0_0 ");
-			int enemy=sc.nextInt();
-			
-			// si le joueur existe et que c'est pas toi
-			
+			int enemy=sc.nextInt();	
 			for (Champion current : champions) {
-				if(current.getId()==enemy)
+				if(current.getId()==enemy & !current.equals(attacking))
 				{
-					sc.close();
 					return current;
 				}
 			}
@@ -213,7 +221,7 @@ public class Jeu {
 	public static void main(String[] args) {
 		Jeu game =new Jeu();
 		game.launch();
-
+		sc.close();
 	}
 
 }
