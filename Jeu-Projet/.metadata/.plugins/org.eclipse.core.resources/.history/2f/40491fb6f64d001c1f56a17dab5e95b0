@@ -6,4 +6,7 @@ public interface InterfaceChampion {
 	
 	public void attack(Champion target);
 	
+	
+	
+
 }

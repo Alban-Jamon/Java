@@ -4,8 +4,7 @@ public abstract class Champion implements InterfaceChampion {
 	
 	private static int count=0;
 	private int id;
-	private int hp;
-	private int damage;
+	private int hp, damage;
 	private boolean protect;
 	
 	

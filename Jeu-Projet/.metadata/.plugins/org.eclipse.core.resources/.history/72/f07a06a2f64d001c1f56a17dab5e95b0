@@ -1,6 +1,6 @@
 package champions;
 
-public class Wizard extends Champion implements Iwizard{
+public class Wizard extends Champion{
 	private int healPoint=5;
 	
 
